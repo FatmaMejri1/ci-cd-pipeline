@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="login-card">
+        <div style="font-size: 2.5rem; color: #414345; margin-bottom: 0.5rem;">
+            <i class="fa fa-user-plus"></i>
+        </div>
+        <h2>Créer un compte</h2>
+        <p style="color: #555; font-size: 1rem; margin-bottom: 1.5rem; text-align:center;">Bienvenue ! Remplissez le formulaire pour rejoindre notre boutique.</p>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="post" action="{{ url_for('signup') }}" style="width:100%;">
+            <label for="name">Nom</label>
+            <input type="email" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required>
+            <label for="confirm_password">Confirmer le mot de passe</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p class="text-center mt-4" style="font-size: 1rem;">
+            Vous avez déjà un compte ?
+            <a href="{{ url_for('login') }}" class="link-auth">Connectez-vous ici</a>
+        </p>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html> 
