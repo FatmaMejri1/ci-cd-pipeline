@@ -96,7 +96,7 @@
                 {% for product in featured_products %}
                 <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300">
                     <div class="h-64 bg-gray-200 relative flex items-center justify-center">
-                        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" class="object-cover h-full w-full"/>
+                        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" class="object-contain h-full w-full transition-transform duration-300 hover:scale-105" style="background:white;"/>
                         <div class="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">NEW</div>
                     </div>
                     <div class="p-4">
@@ -108,6 +108,60 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section id="promos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Special Promotions</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover our exclusive deals and limited-time offers on selected items.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Discount Promotion -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="relative">
+                        <img src="{{ url_for('static', filename='images/promo1.jpg') }}" alt="Summer Sale" class="w-full h-80 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold px-4 py-1 rounded-full">-30% OFF</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Summer Sale</h3>
+                        <p class="text-gray-600 mb-4">Enjoy 30% off on all summer collection items. Limited time offer!</p>
+                        <div class="flex flex-col space-y-3">
+                            <div class="flex items-baseline">
+                                <span class="text-gray-400 line-through text-lg mr-3">$99.99</span>
+                                <span class="text-2xl font-bold text-red-600">$69.99</span>
+                            </div>
+                            <a href="#" class="block w-full text-center bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition font-medium">
+                                Shop the Sale
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bundle Promotion -->
+                <div class="bg-gray-50 border border-gray-200 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="relative">
+                        <img src="{{ url_for('static', filename='images/bundle-promo.jpg') }}" alt="Bundle Deal" class="w-full h-80 object-cover">
+                        <div class="absolute top-4 right-4 bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-full tracking-wide">BUNDLE DEAL</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Bundle & Save</h3>
+                        <p class="text-gray-600 mb-4">Create your perfect look and save 15% when you buy any 2 or more items.</p>
+                        <div class="bg-gray-100 border border-gray-200 rounded-lg p-4 mb-4">
+                            <p class="text-gray-800 text-sm font-medium">Use code at checkout:</p>
+                            <div class="mt-2 bg-white border border-gray-300 rounded-md px-3 py-2 inline-block">
+                                <span class="font-mono text-gray-800 font-bold">BUNDLE15</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mt-2">Limited time offer. Exclusions may apply.</p>
+                        </div>
+                        <a href="#" class="block w-full text-center bg-gray-900 text-white px-6 py-3 rounded-md hover:bg-gray-800 transition font-medium">
+                            Shop the Bundle
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -161,19 +215,6 @@
             </div>
         </div>
     </footer>
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuBtn.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('max-h-0')) {
-                mobileMenu.classList.remove('max-h-0');
-                mobileMenu.classList.add('max-h-96');
-            } else {
-                mobileMenu.classList.remove('max-h-96');
-                mobileMenu.classList.add('max-h-0');
-            }
-        });
-    </script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>

@@ -1,2 +1,6 @@
 flask
-flask_sqlalchemy
+flask-sqlalchemy
+flask-login
+flask-wtf
+email-validator
+werkzeug

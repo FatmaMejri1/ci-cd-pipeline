@@ -53,11 +53,7 @@
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-100">
                 <div class="h-56 bg-gray-100 flex items-center justify-center relative group">
                     {% if product.image %}
-                        {% if category.name|lower == 'jeans' %}
-                            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" class="h-full w-full group-hover:scale-105 transition-transform duration-300 object-contain bg-white"/>
-                        {% else %}
-                            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" class="object-cover h-full w-full group-hover:scale-105 transition-transform duration-300"/>
-                        {% endif %}
+                        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300" style="background:white;"/>
                     {% else %}
                         <i class="fas fa-box-open text-6xl text-gray-300"></i>
                     {% endif %}
@@ -67,7 +63,9 @@
                     <p class="text-sm text-gray-500 mb-3 line-clamp-2">{{ product.description }}</p>
                     <div class="flex items-center justify-between mt-auto">
                         <span class="text-xl font-bold text-red-600">{{ product.price }} €</span>
-                        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition">View Details</a>
+                        <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}" style="display:inline;">
+                            <button type="submit" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition">Book Now</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -1,37 +1,125 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-</head>
-<body>
-    <div class="login-card">
-        <div style="font-size: 2.5rem; color: #414345; margin-bottom: 0.5rem;">
-            <i class="fa fa-user-plus"></i>
-        </div>
-        <h2>Créer un compte</h2>
-        <p style="color: #555; font-size: 1rem; margin-bottom: 1.5rem; text-align:center;">Bienvenue ! Remplissez le formulaire pour rejoindre notre boutique.</p>
-        {% if error %}
-            <div class="error">{{ error }}</div>
-        {% endif %}
-        <form method="post" action="{{ url_for('signup') }}" style="width:100%;">
-            <label for="name">Nom</label>
-            <input type="email" id="name" name="name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirm_password">Confirmer le mot de passe</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
-            <button type="submit">S'inscrire</button>
-        </form>
-        <p class="text-center mt-4" style="font-size: 1rem;">
-            Vous avez déjà un compte ?
-            <a href="{{ url_for('login') }}" class="link-auth">Connectez-vous ici</a>
-        </p>
-    </div>
+    <title>Create Account - ECHRINI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center bg-gray-100">
+    <!-- main-container start -->
+    <div class="main-container">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Create your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Or
+                <a href="{{ url_for('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    sign in to your account
+                </a>
+            </p>
+        </div>
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="mb-4 p-4 text-sm text-{{ category }}-700 bg-{{ category }}-100 rounded-lg">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form class="space-y-6" action="" method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            {{ form.first_name.label(class="block text-sm font-medium text-gray-700") }}
+                            <div class="mt-1">
+                                {{ form.first_name(class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                                {% for error in form.first_name.errors %}
+                                    <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            {{ form.last_name.label(class="block text-sm font-medium text-gray-700") }}
+                            <div class="mt-1">
+                                {{ form.last_name(class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                                {% for error in form.last_name.errors %}
+                                    <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        {{ form.username.label(class="block text-sm font-medium text-gray-700") }}
+                        <div class="mt-1">
+                            {{ form.username(class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                            {% for error in form.username.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        {{ form.email.label(class="block text-sm font-medium text-gray-700") }}
+                        <div class="mt-1">
+                            {{ form.email(class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                            {% for error in form.email.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        {{ form.password.label(class="block text-sm font-medium text-gray-700") }}
+                        <div class="mt-1">
+                            {{ form.password(class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                            {% for error in form.password.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        {{ form.confirm_password.label(class="block text-sm font-medium text-gray-700") }}
+                        <div class="mt-1">
+                            {{ form.confirm_password(class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") }}
+                            {% for error in form.confirm_password.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Create account
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">
+                                Already have an account?
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{{ url_for('login') }}" class="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Sign in
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main-container end -->
 </body>
-</html> 
+</html>
