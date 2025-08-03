@@ -1,0 +1,38 @@
+# Python and development artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.DS_Store
+*.swp
+*.egg-info/
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment and configuration
+.env
+.env.*
+instance/
+*.sqlite
+*.db
+*.log
+
+# Version control and docker files
+.git/
+.gitignore
+.gitlab-ci.yml
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Static files (if not needed in production)
+static/uploads/
+static/tmp/
