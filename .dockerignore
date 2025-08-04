@@ -21,10 +21,6 @@ instance/
 
 # Version control and docker files
 .git/
-.gitignore
-.gitlab-ci.yml
-.dockerignore
-Dockerfile*
 docker-compose*.yml
 
 # Virtual environment
